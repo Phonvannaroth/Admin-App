@@ -1,0 +1,42 @@
+.header{
+    height: 60px;
+    width: 100vw;
+    background-color: #2b2b2b;
+    .appNav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+       navbar-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 8px 16px;
+       }
+    }
+    
+        .mat-toolbar {
+            display: flex;
+            background: #6A1B9A;
+            color: rgb(255, 255, 255);
+            display: flex;
+            flex-wrap: wrap;
+            vertical-align: middle;
+            align-items: center;
+            button{
+                font-family: Roboto,"Helvetica Neue",sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+            }
+            i{
+                font-style: normal;
+            }
+            }
+            .flex-spacer {
+                flex-grow: 1;
+            }
+            div {
+                display: block;
+            }
+}

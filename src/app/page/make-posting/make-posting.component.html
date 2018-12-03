@@ -1,0 +1,62 @@
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>Job Details</ng-template>
+        <!-- <mat-form-field>
+          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        </mat-form-field> -->
+        <app-job-detail></app-job-detail>
+        <div>
+          <button mat-stroked-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+            
+          <ng-template matStepLabel>Company Info</ng-template>
+        <app-company-info></app-company-info>
+  
+          <div >
+              <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
+              <button mat-stroked-button color="primary" matStepperNext>Next</button>
+            </div>
+          
+        </form>
+      </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]=" thirdFormGroup">
+          
+        <ng-template matStepLabel>Job Requirement</ng-template>
+        <app-job-requirement></app-job-requirement>
+        
+
+        <div >
+            <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
+            <button mat-stroked-button color="primary" matStepperNext>Next</button>
+          </div>
+        
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="forthFormGroup">
+      <form [formGroup]="forthFormGroup">
+        <ng-template matStepLabel>Job Description</ng-template>
+        <app-job-description></app-job-description>
+       
+        <div >
+            <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
+            <button mat-stroked-button color="primary" matStepperNext>Next</button>
+          </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done!</ng-template>
+      <app-job-review></app-job-review>
+      <div>
+        <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
+        <button mat-stroked-button color="primary" (click)="stepper.reset()">Reset</button>
+        <button mat-stroked-button color="primary" >Submit</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  

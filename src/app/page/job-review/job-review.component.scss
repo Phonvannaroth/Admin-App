@@ -1,0 +1,51 @@
+
+.mat-elevation-z8 {
+    box-shadow: none;
+    border: solid 1px;
+}
+.example-container {
+    height: 435px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+  }
+  .example-form {
+    display: flex;
+   
+   
+    .example-full-width {
+      width: 100%;
+      
+      padding-left: 20px;
+      padding-right: 20px;
+      margin: 10px;
+    }
+    .example-haft-width {
+      width: 42%;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    
+  }
+  
+  .form-left {
+    flex: 1;
+    height: 100%;
+    
+    
+  
+    
+  }
+  .form-right {
+    flex: 1;
+    height: 100%;
+    
+    
+    
+  
+    
+  }
+  

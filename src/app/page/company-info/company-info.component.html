@@ -1,0 +1,36 @@
+<form class="example-form">
+  <div class="form-left">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Company Name.">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Company Email." [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <span matPrefix>+855 &nbsp;</span>
+      <input type="tel" matInput placeholder="Telephone.">
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput type="url" placeholder="Website.">
+    </mat-form-field>
+
+
+  </div>
+  <div class="form-right">
+    <mat-form-field class="example-full-width">
+      <input matInput type="url" placeholder="Facebook URL.">
+      <mat-icon matSuffix>link</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput rows="2" cols="40" placeholder="Address 1"></textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput rows="2" cols="40"placeholder="Address 2"></textarea>
+
+    </mat-form-field>
+  </div>
+
+
+</form>

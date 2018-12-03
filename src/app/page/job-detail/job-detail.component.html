@@ -1,0 +1,88 @@
+<form class="example-form">
+  <div class="form-left">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Job Title.">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Year of Exp.">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Hiring.">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Salary.">
+      </mat-form-field>
+      
+    
+        <mat-form-field class="example-haft-width">
+            <mat-select placeholder="Sex.">
+                <mat-option *ngFor="let sex of sexes" [value]="sex.value">
+                  {{sex.viewValue}}
+                </mat-option>
+              </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-haft-width">
+            <input matInput placeholder="Age." type="number">
+        </mat-form-field>
+    <mat-form-field class="example-haft-width">
+      <input matInput [matDatepicker]="picker" placeholder="Public Date.">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="example-haft-width">
+      <input matInput [matDatepicker]="picker1" placeholder="Close Date.">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+
+
+  </div>
+  <div class="form-right">
+
+      <mat-form-field class="example-full-width">
+          <mat-select placeholder="Term.">
+              <mat-option *ngFor="let term of terms" [value]="term.value">
+                {{term.viewValue}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Job Category.">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+              </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Industry.">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Qualification.">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+              <mat-chip-list #chipList>
+                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                           [removable]="removable" (removed)="remove(fruit)">
+                    {{fruit.name}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Language."
+                         [matChipInputFor]="chipList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur"
+                         (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Location.">
+              </mat-form-field>
+    
+        
+
+  </div>
+
+
+</form>

@@ -1,0 +1,67 @@
+<mat-accordion>
+
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <span>
+          <button mat-button> <i class="material-icons lg">
+              account_box
+            </i> Job Announment
+          </button></span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="cl-personal" *ngFor="let menues of menu">
+      <button mat-button class="fix-mat-button" [routerLink]="[menues.link]">
+        <i class="material-icons lg">
+          {{menues.icon}}
+        </i> {{menues.title}}</button>
+    </div>
+   
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <span>
+          <button mat-button> <i class="material-icons lg">
+              account_balance_wallet
+            </i> Balance
+          </button></span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <button mat-button>
+      Menu </button><br>
+    <button mat-button>
+      List</button>
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <span>
+          <button mat-button> <i class="material-icons lg">
+              assessment
+            </i> Analytics
+          </button></span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <button mat-button>
+      Report </button><br>
+    <button mat-button>
+      Graph</button>
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <span>
+          <button mat-button> <i class="material-icons lg">
+              settings
+            </i> Settings
+          </button></span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <button mat-button>
+      Account </button><br>
+    <button mat-button>
+      Design</button>
+  </mat-expansion-panel>
+</mat-accordion>

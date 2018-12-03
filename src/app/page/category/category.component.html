@@ -1,0 +1,24 @@
+<nav mat-tab-nav-bar [backgroundColor]="background">
+    <a mat-tab-link *ngFor="let link of links"
+       (click)="activeLink = link"
+       [active]="activeLink == link"> {{link}} </a>
+    <a mat-tab-link disabled>Disabled Link</a>
+  </nav>
+<form>
+  <h2>Add Category</h2>
+  <div class="large-group">
+    <div class="small-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Category Name">
+      </mat-form-field>
+    </div>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <div class="small-group">
+      <button mat-raised-button color="primary">Add</button>
+    </div>
+  </div>
+</form>
+

@@ -1,0 +1,24 @@
+.mat-expansion-panel-spacing {
+    margin: 0;
+      }
+      .mat-expansion-panel-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 10px;
+        border-radius: inherit;
+        flex-wrap: wrap;
+        
+    }
+    .cl-personal{
+      display: flex;
+      flex-direction: column;
+      .fix-mat-button{
+        text-align: left;
+        width: 100%;
+
+      }
+    }
+    .mat-expansion-panel{
+      border-radius: 0;
+    }
