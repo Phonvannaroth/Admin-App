@@ -4,21 +4,28 @@
        [active]="activeLink == link"> {{link}} </a>
     <a mat-tab-link disabled>Disabled Link</a>
   </nav>
-<form>
+<form [formGroup]="form">
   <h2>Add Category</h2>
   <div class="large-group">
     <div class="small-group">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Category Name">
+        <input matInput placeholder="Category Name" formControlName="name">
       </mat-form-field>
     </div>
     <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Description"></textarea>
+      <textarea matInput placeholder="Description" formControlName="description"></textarea>
     </mat-form-field>
 
     <div class="small-group">
-      <button mat-raised-button color="primary">Add</button>
+      <button mat-raised-button color="primary" (click)="_save(form.value)">Add</button>
     </div>
   </div>
 </form>
+
+<ul>
+  <li *ngFor="let item of category?.data">
+    {{item.name}}
+
+  </li>
+</ul>
 

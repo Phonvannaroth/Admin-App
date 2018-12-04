@@ -21,6 +21,13 @@ import { JobDescriptionComponent } from './page/job-description/job-description.
 import { CompanyInfoComponent } from './page/company-info/company-info.component';
 import { JobReviewComponent } from './page/job-review/job-review.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
+import { APP_SERVICE } from './service/app.service';
+import { APP_STORE } from './store/app.store';
 
 @NgModule({
   declarations: [
@@ -40,6 +47,10 @@ import { JobReviewComponent } from './page/job-review/job-review.component';
     JobReviewComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase, 'my-app-name'), // imports firebase/app needed for everything
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireStorageModule, // imports firebase/storage only needed for storage features
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -47,7 +58,10 @@ import { JobReviewComponent } from './page/job-review/job-review.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    APP_SERVICE,
+    APP_STORE
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
