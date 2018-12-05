@@ -28,6 +28,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { APP_SERVICE } from './service/app.service';
 import { APP_STORE } from './store/app.store';
+import { EditCategoryComponent } from './dialog/edit-category/edit-category.component';
+import { DeleteComponent } from './dialog/delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { APP_STORE } from './store/app.store';
     JobRequirementComponent,
     JobDescriptionComponent,
     CompanyInfoComponent,
-    JobReviewComponent
+    JobReviewComponent,
+    EditCategoryComponent,
+    DeleteComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase, 'my-app-name'), // imports firebase/app needed for everything
@@ -57,6 +61,10 @@ import { APP_STORE } from './store/app.store';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  entryComponents:[
+    EditCategoryComponent,
+    DeleteComponent,
   ],
   providers: [
     APP_SERVICE,

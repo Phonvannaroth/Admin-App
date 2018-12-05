@@ -17,7 +17,7 @@
     </mat-form-field>
 
     <div class="small-group">
-      <button mat-raised-button color="primary" (click)="_save(form.value)">Add</button>
+      <button mat-raised-button color="primary" (click)="_save(form.value)" >Add</button>
     </div>
   </div>
 </form>
@@ -25,7 +25,19 @@
 <ul>
   <li *ngFor="let item of category?.data">
     {{item.name}}
-
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="_edit(item)">
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
   </li>
 </ul>
 

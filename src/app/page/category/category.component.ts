@@ -3,6 +3,8 @@ import { Category } from 'src/app/store/category.store';
 import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Categorykey } from 'src/app/interface/category';
+import { EditCategoryComponent } from 'src/app/dialog/edit-category/edit-category.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-category',
@@ -16,9 +18,10 @@ export class CategoryComponent implements OnInit {
   form: FormGroup;
   name: AbstractControl;
   description: AbstractControl;
-  constructor(public category: Category, private fb: FormBuilder ,private db :AngularFirestore) { }
+  constructor(public category: Category, private fb: FormBuilder ,private db :AngularFirestore, public dialog:MatDialog) { }
 
   ngOnInit() {
+
     this.category.fetchData();
     this.buildForm();
   }
@@ -39,7 +42,7 @@ export class CategoryComponent implements OnInit {
         name:f.name,
         description:f.description,
       }
-      this.category.adddata(item,(success , error)=>{
+      this.category.addData(item,(success , error)=>{
         if(success){
           alert("success")
         }
@@ -48,5 +51,10 @@ export class CategoryComponent implements OnInit {
         }
       })
     }
+  }
+  _edit(item){
+    const dialogRef= this.dialog.open(EditCategoryComponent,{
+      data:item
+    })
   }
 }
