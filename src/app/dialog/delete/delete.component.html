@@ -1,3 +1,8 @@
-<p>
-  delete works!
-</p>
+<div mat-dialog-content>
+  <p>Do You Want to Delete?</p>
+  <p>{{msg?.name}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close('no')">Cancel</button>
+  <button mat-button cdkFocusInitial (click)="_delete(msg)">Ok</button>
+</div>

@@ -4,7 +4,8 @@ import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/fo
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Categorykey } from 'src/app/interface/category';
 import { EditCategoryComponent } from 'src/app/dialog/edit-category/edit-category.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { DeleteComponent } from 'src/app/dialog/delete/delete.component';
 
 @Component({
   selector: 'app-category',
@@ -18,12 +19,13 @@ export class CategoryComponent implements OnInit {
   form: FormGroup;
   name: AbstractControl;
   description: AbstractControl;
-  constructor(public category: Category, private fb: FormBuilder ,private db :AngularFirestore, public dialog:MatDialog) { }
+  constructor(public category: Category, private fb: FormBuilder ,private db :AngularFirestore, public dialog:MatDialog,private snackBar:MatSnackBar) { }
 
   ngOnInit() {
 
     this.category.fetchData();
     this.buildForm();
+    
   }
   buildForm(): void {
     this.form = this.fb.group({
@@ -42,9 +44,10 @@ export class CategoryComponent implements OnInit {
         name:f.name,
         description:f.description,
       }
-      this.category.addData(item,(success , error)=>{
+      this.category.addData(item,(success, error)=>{
         if(success){
-          alert("success")
+          console.log(success);
+          this.snackBar.open('Category Added.', 'done', { duration: 2000 });
         }
         else{
           alert(error)
@@ -54,6 +57,11 @@ export class CategoryComponent implements OnInit {
   }
   _edit(item){
     const dialogRef= this.dialog.open(EditCategoryComponent,{
+      data:item
+    })
+  }
+  _delete(item){
+    const dialogRef= this.dialog.open(DeleteComponent,{
       data:item
     })
   }
