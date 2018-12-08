@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { Categorykey } from 'src/app/interface/category';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -19,7 +19,8 @@ export class EditCategoryComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb:FormBuilder,
     private db:AngularFirestore,
-    public category: Category) { }
+    public category: Category,
+    private snackBar: MatSnackBar,) { }
 
   ngOnInit() {
     this.buildForm();
@@ -47,6 +48,7 @@ export class EditCategoryComponent implements OnInit {
       this.category.updateData(item,(success,error)=>{
         if(success){
           this.dialogRef.close();
+          this.snackBar.open('Category Edited.', 'done', { duration: 2000 });
         }
         else{
           alert(error);
