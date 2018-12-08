@@ -12,4 +12,7 @@ export class DataserviceService {
    categoryRef(){
     return this.db.collection('category')
    }
+   companyRef(){
+     return this.db.collection('companyInfo')
+   }
 }

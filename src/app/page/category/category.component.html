@@ -22,14 +22,14 @@
   </div>
 </form>
 
-<ul>
+<!-- <ul>
   <li *ngFor="let item of category?.data">
     {{item.name}}
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="_edit(item)">
+      <button mat-menu-item>
         <mat-icon>edit</mat-icon>
         <span>Edit</span>
       </button>
@@ -39,5 +39,27 @@
       </button>
     </mat-menu>
   </li>
-</ul>
+</ul> -->
+<mat-list>
+  <h3 mat-subheader>Folders</h3>
+  <mat-list-item *ngFor="let item of category?.data">
+    <mat-icon mat-list-icon>free_breakfast</mat-icon>
+    <h4 mat-line>{{item.name}}  </h4>
+    <p mat-line> {{item.description| date}} </p>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item  (click)="_edit(item)">
+        <mat-icon>edit_attributes</mat-icon>
+        <span>Edit</span>
+      </button>
 
+      <button mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
+  </mat-list-item>
+ 
+</mat-list>
