@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export interface Company {
     key?:string;
     name?:string;
@@ -31,3 +32,14 @@ export interface PostJob{
     requirement:string;
     description:string;
 }
+=======
+export interface Companykey {
+    key?: string;
+    CName: string;
+    email: string;
+    website: string;
+    facebook: string;
+    address1: string;
+    address2: string;
+}
+>>>>>>> fab476a46a603a366fac195513e30c3477e4b99e
