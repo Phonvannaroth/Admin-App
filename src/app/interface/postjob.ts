@@ -1,20 +1,20 @@
-export interface Postjob{
+export interface Postjobkey{
     key?:string;
-    company_key?:string;
-    category_key?:string;
+    company_name?:string;
+    category_name?:string;
     jobtitle?:string;
     exp:number;
     hiring:number;
     salary:string;
-    gender:string;
+    sex:string;
     age:string;
     postdate?:Date;
-    expdate?:Date;
+    closedate?:Date;
     term:string;
-    industry:string;
+    // industry:string;
     qualification:string;
-    language:string;
-    location?:string;
+    language:string[];
+    location?:string[];
     requirement:string;
     description:string;
 }

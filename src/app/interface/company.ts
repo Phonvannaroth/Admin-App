@@ -1,12 +1,12 @@
-export interface Company {
+export interface Companykey {
     key?:string;
-    name?:string;
+    name:string;
     employees:string;
-    email?:string;
+    email:string;
     website:string;
     facebook:string;
-    phone_number?:string;
-    address_1?:string;
+    phone_number:string;
+    address_1:string;
     address_2:string;
-    date_create?:Date;
+    date_create:Date;
 }

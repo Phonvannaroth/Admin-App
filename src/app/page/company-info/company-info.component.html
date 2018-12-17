@@ -1,39 +1,102 @@
-<form class="example-form">
+<form class="example-form" [formGroup]="form">
   <div class="form-left">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Company Name.">
+      <input
+        matInput
+        placeholder="Company Name."
+        formControlName="companyname"
+      />
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Company Email." [formControl]="email" required>
-      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      <input
+        matInput
+        placeholder="Company Email."
+        formControlName="companyemail"
+      />
+      <!--
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      -->
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <span matPrefix>+855 &nbsp;</span>
-      <input type="tel" matInput placeholder="Telephone.">
+      <input
+        type="tel"
+        matInput
+        placeholder="Telephone."
+        formControlName="companyphone"
+      />
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <input matInput type="url" placeholder="Website.">
+      <input
+        matInput
+        type="url"
+        placeholder="Website."
+        formControlName="companywebsite"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        placeholder="Employees."
+        formControlName="companyemployees"
+      />
     </mat-form-field>
     <div class="small-group">
-      <button mat-raised-button color="primary" >Add</button>
+      <button mat-raised-button color="primary" (click)="_save(form.value)">
+        Add
+      </button>
     </div>
-
   </div>
   <div class="form-right">
     <mat-form-field class="example-full-width">
-      <input matInput type="url" placeholder="Facebook URL.">
+      <input
+        matInput
+        type="url"
+        placeholder="Facebook URL."
+        formControlName="companyfb"
+      />
       <mat-icon matSuffix>link</mat-icon>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <textarea matInput rows="2" cols="40" placeholder="Address 1"></textarea>
+      <textarea
+        matInput
+        rows="2"
+        cols="40"
+        placeholder="Address 1"
+        formControlName="companyaddress1"
+      ></textarea>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <textarea matInput rows="2" cols="40"placeholder="Address 2"></textarea>
-
+      <textarea
+        matInput
+        rows="2"
+        cols="40"
+        placeholder="Address 2"
+        formControlName="companyaddress2"
+      ></textarea>
     </mat-form-field>
-
   </div>
-
-
 </form>
+
+<mat-list>
+  <h3 mat-subheader>Folders</h3>
+  <mat-list-item *ngFor="let item of company?.data">
+    <mat-icon mat-list-icon>free_breakfast</mat-icon>
+    <h4 mat-line>{{ item.name }}</h4>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="_edit(item)">
+        <mat-icon>edit_attributes</mat-icon>
+        <span>Edit</span>
+      </button>
+
+      <button mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
+  </mat-list-item>
+</mat-list>

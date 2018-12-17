@@ -15,4 +15,7 @@ export class DataserviceService {
    companyRef(){
      return this.db.collection('companyInfo')
    }
+   postjobRef(){
+     return this.db.collection('postjob')
+   }
 }

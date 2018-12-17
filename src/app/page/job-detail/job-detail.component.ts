@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
+import { Category } from 'src/app/store/category.store';
+import { Company } from 'src/app/store/company.store';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export interface Fruit {
   name: string;
 }
@@ -28,13 +31,13 @@ export class JobDetailComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  firstCtrl:FormGroup;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   fruits: Fruit[] = [
     {name: 'English'},
     {name: 'Chinese'},
     {name: 'Japanese'},
   ];
-
   displayedColumns = ['item', 'cost'];
   sexes: Sex[] = [
     {value: '1', viewValue: 'Male'},
@@ -46,14 +49,6 @@ export class JobDetailComponent implements OnInit {
     {value: '2', viewValue: 'Part Time'},
     {value: '3', viewValue: 'Internship'},
     {value: '4', viewValue: 'Volunteer'}
-  ];
-  transactions: Transaction[] = [
-    {item: 'Beach ball', cost: 4},
-    {item: 'Towel', cost: 5},
-    {item: 'Frisbee', cost: 2},
-    {item: 'Sunscreen', cost: 4},
-    {item: 'Cooler', cost: 25},
-    {item: 'Swim suit', cost: 15},
   ];
   states: string[] = [
     'Accounting', 'Administration', 'Architecture/Engineering',
@@ -69,15 +64,29 @@ export class JobDetailComponent implements OnInit {
     'Travel', 'Agent/Ticket Sales'
   ];
 
-  /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
-  }
-
-
-  constructor() { }
+  constructor(private categoryfilter:Category,private companyfilter:Company,public fb:FormBuilder) { }
 
   ngOnInit() {
+    this.categoryfilter.fetchData(list=>{});
+    this.companyfilter.fetchData();
+    this.buildform();
+  }
+  buildform(): void{
+    this.firstCtrl = this.fb.group({
+      jobtitle:[null,Validators.required],
+      yearofexp:[null,Validators.required],
+      hiring:[null],
+      salary:[null],
+      sex:[null,Validators.required],
+      age:[null],
+      closedate:[null,Validators.required],
+      term:[null,Validators.required],
+      jobcategory:[null,Validators.required],
+      company:[null,Validators.required],
+      qualification:[null,Validators.required],
+      language:[null],
+      location:[null,Validators.required]
+    })
   }
 
 

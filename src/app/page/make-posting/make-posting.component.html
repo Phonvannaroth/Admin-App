@@ -1,63 +1,241 @@
-
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Job Details</ng-template>
-        <!-- <mat-form-field>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-        </mat-form-field> -->
-        <app-job-detail></app-job-detail>
-        <div>
-          <button mat-stroked-button color="primary" matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <!-- <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
-            
-          <ng-template matStepLabel>Company Info</ng-template>
-        <app-company-info></app-company-info>
-  
-          <div >
-              <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
-              <button mat-stroked-button color="primary" matStepperNext>Next</button>
-            </div>
-          
-        </form>
-      </mat-step> -->
-    <mat-step [stepControl]="thirdFormGroup">
-      <form [formGroup]=" thirdFormGroup">
-          
-        <ng-template matStepLabel>Job Requirement</ng-template>
-        <app-job-requirement></app-job-requirement>
-        
-
-        <div >
-            <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
-            <button mat-stroked-button color="primary" matStepperNext>Next</button>
-          </div>
-        
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="forthFormGroup">
-      <form [formGroup]="forthFormGroup">
-        <ng-template matStepLabel>Job Description</ng-template>
-        <app-job-description></app-job-description>
-       
-        <div >
-            <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
-            <button mat-stroked-button color="primary" matStepperNext>Next</button>
-          </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done!</ng-template>
-      <app-job-review></app-job-review>
-      <div>
-        <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
-        <button mat-stroked-button color="primary" (click)="stepper.reset()">Reset</button>
-        <button mat-stroked-button color="primary" >Submit</button>
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="FirstGroup">
+    <form class="example-form" [formGroup]="FirstGroup">
+      <ng-template matStepLabel>Job Details</ng-template>
+      <div class="form-left">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Job Title." formControlName="jobtitle" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Year of Exp."
+            formControlName="yearofexp"
+            type="number"
+          />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            type="number"
+            placeholder="Hiring."
+            formControlName="hiring"
+          />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Salary." formControlName="salary" />
+        </mat-form-field>
+        <mat-form-field class="example-haft-width">
+          <mat-select placeholder="Sex." formControlName="sex">
+            <mat-option *ngFor="let sex of sexes" [value]="sex.value">
+              {{ sex.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-haft-width">
+          <input
+            matInput
+            placeholder="Age."
+            type="number"
+            formControlName="age"
+          />
+        </mat-form-field>
+        <!--
+          <mat-form-field class="example-haft-width">
+            <input matInput [matDatepicker]="picker" placeholder="Public Date.">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        -->
+        <mat-form-field class="example-haft-width">
+          <input
+            matInput
+            [matDatepicker]="picker1"
+            placeholder="Close Date."
+            formControlName="closedate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
       </div>
+      <div class="form-right">
+        <mat-form-field class="example-full-width">
+          <mat-select placeholder="Term." formControlName="term">
+            <mat-option *ngFor="let term of terms" [value]="term.value">
+              {{ term.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-select
+            [compareWith]="compareFn"
+            placeholder="Job Category."
+            formControlName="jobcategory"
+          >
+            <mat-option>None</mat-option>
+            <mat-option
+              *ngFor="let state of categoryfilter?.data"
+              [value]="state"
+              >{{ state.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-select placeholder="Company." formControlName="company">
+            <mat-option>None</mat-option>
+            <mat-option
+              *ngFor="let state of companyfilter?.data"
+              [value]="state"
+              >{{ state.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Qualification."
+            formControlName="qualification"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipList formControlName="language">
+            <mat-chip
+              *ngFor="let fruit of fruits"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(fruit)"
+            >
+              {{ fruit }}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Language..."
+              #fruitInput
+              [formControl]="fruitCtrl"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)"
+            />
+          </mat-chip-list>
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="selected($event)"
+          >
+            <mat-option
+              *ngFor="let fruit of (filteredFruits | async)"
+              [value]="fruit.nativeName"
+            >
+              {{ fruit }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <!--
+          <mat-form-field class="example-full-width">
+            <mat-chip-list #chipList>
+              <mat-chip
+                *ngFor="let fruit of fruits"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(fruit)"
+              >
+                {{ fruit.name }}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="Language."
+                formControlName="language"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)"
+              />
+            </mat-chip-list>
+          </mat-form-field>
+        -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Location." formControlName="location" />
+        </mat-form-field>
+      </div>
+    </form>
+    <div>
+      <button mat-stroked-button color="primary" matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <!--
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+
+        <ng-template matStepLabel>Company Info</ng-template>
+      <app-company-info></app-company-info>
+
+        <div >
+            <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
+            <button mat-stroked-button color="primary" matStepperNext>Next</button>
+          </div>
+
+      </form>
     </mat-step>
-  </mat-horizontal-stepper>
-  
+  -->
+  <mat-step [stepControl]="SecondGroup">
+    <form [formGroup]="SecondGroup" class="example-form2">
+      <ng-template matStepLabel>Job Requirement</ng-template>
+
+      <textarea
+        class="form-control"
+        rows="5"
+        placeholder="Requirement Here"
+        formControlName="requirement"
+      ></textarea>
+
+      <div>
+        <button mat-stroked-button color="primary" matStepperPrevious>
+          Back
+        </button>
+        <button mat-stroked-button color="primary" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="ThirdGroup">
+    <form [formGroup]="ThirdGroup" class="example-form2">
+      <ng-template matStepLabel>Job Description</ng-template>
+      <textarea
+        class="form-control"
+        rows="5"
+        placeholder="Description here"
+        formControlName="description"
+      ></textarea>
+
+      <div>
+        <button mat-stroked-button color="primary" matStepperPrevious>
+          Back
+        </button>
+        <button mat-stroked-button color="primary" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done!</ng-template>
+    <app-job-review></app-job-review>
+    <div>
+      <button mat-stroked-button color="primary" matStepperPrevious>
+        Back
+      </button>
+      <button mat-stroked-button color="primary" (click)="stepper.reset()">
+        Reset
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="_save(FirstGroup.value, SecondGroup.value, ThirdGroup.value,chipList)"
+      >
+        Submit
+      </button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

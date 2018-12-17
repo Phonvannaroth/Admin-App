@@ -21,7 +21,8 @@ import {MatButtonModule,
     MatPaginatorModule,
     MatStepperModule,
     MatNativeDateModule,
-    MatChipsModule
+    MatChipsModule,
+    MatAutocompleteModule
 
 } from '@angular/material';
 
@@ -49,5 +50,6 @@ export const MaterialModule = [
     MatPaginatorModule,
     MatStepperModule,
     MatNativeDateModule,
-    MatChipsModule
+    MatChipsModule,
+    MatAutocompleteModule
 ];

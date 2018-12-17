@@ -15,7 +15,6 @@ import { MenuComponent } from './component/menu/menu.component';
 import { ContentHeaderComponent } from './component/content-header/content-header.component';
 import { MakePostingComponent } from './page/make-posting/make-posting.component';
 import { CategoryComponent } from './page/category/category.component';
-import { JobDetailComponent } from './page/job-detail/job-detail.component';
 import { JobRequirementComponent } from './page/job-requirement/job-requirement.component';
 import { JobDescriptionComponent } from './page/job-description/job-description.component';
 import { CompanyInfoComponent } from './page/company-info/company-info.component';
@@ -30,6 +29,8 @@ import { APP_SERVICE } from './service/app.service';
 import { APP_STORE } from './store/app.store';
 import { EditCategoryComponent } from './dialog/edit-category/edit-category.component';
 import { DeleteComponent } from './dialog/delete/delete.component';
+import { EditCompanyprofileComponent } from './dialog/edit-companyprofile/edit-companyprofile.component';
+import { JobDetailComponent } from './page/job-detail/job-detail.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { DeleteComponent } from './dialog/delete/delete.component';
     CompanyInfoComponent,
     JobReviewComponent,
     EditCategoryComponent,
-    DeleteComponent
+    DeleteComponent,
+    EditCompanyprofileComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase, 'my-app-name'), // imports firebase/app needed for everything
@@ -60,7 +62,7 @@ import { DeleteComponent } from './dialog/delete/delete.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   entryComponents:[
     EditCategoryComponent,

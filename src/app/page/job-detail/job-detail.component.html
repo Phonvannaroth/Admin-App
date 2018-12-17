@@ -1,65 +1,60 @@
-<form class="example-form">
+<form class="example-form" [formGroup]="firstCtrl">
   <div class="form-left">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Job Title.">
+      <input matInput placeholder="Job Title." formControlName="jobtitle">
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Year of Exp.">
+      <input matInput placeholder="Year of Exp." formControlName="yearofexp">
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Hiring.">
+      <input matInput placeholder="Hiring." formControlName="hiring">
     </mat-form-field>
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Salary.">
+        <input matInput placeholder="Salary." formControlName="salary">
       </mat-form-field>
-      
-    
         <mat-form-field class="example-haft-width">
-            <mat-select placeholder="Sex.">
+            <mat-select placeholder="Sex." formControlName="sex">
                 <mat-option *ngFor="let sex of sexes" [value]="sex.value">
                   {{sex.viewValue}}
                 </mat-option>
               </mat-select>
         </mat-form-field>
-
         <mat-form-field class="example-haft-width">
-            <input matInput placeholder="Age." type="number">
+            <input matInput placeholder="Age." type="number" formControlName="age">
         </mat-form-field>
-    <mat-form-field class="example-haft-width">
+    <!-- <mat-form-field class="example-haft-width">
       <input matInput [matDatepicker]="picker" placeholder="Public Date.">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
+    </mat-form-field> -->
     <mat-form-field class="example-haft-width">
-      <input matInput [matDatepicker]="picker1" placeholder="Close Date.">
+      <input matInput [matDatepicker]="picker1" placeholder="Close Date." formControlName="closedate">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
-
-
-
   </div>
   <div class="form-right">
-
       <mat-form-field class="example-full-width">
-          <mat-select placeholder="Term.">
+          <mat-select placeholder="Term." formControlName="term">
               <mat-option *ngFor="let term of terms" [value]="term.value">
                 {{term.viewValue}}
               </mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <mat-select placeholder="Job Category.">
+            <mat-select placeholder="Job Category." formControlName="jobcategory">
                 <mat-option>None</mat-option>
-                <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+                <mat-option *ngFor="let state of categoryfilter?.data" [value]="state">{{state.name}}</mat-option>
               </mat-select>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Industry.">
+          <mat-select placeholder="Company." formControlName="company">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let state of companyfilter?.data" [value]="state">{{state.name}}</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Qualification.">
+            <input matInput placeholder="Qualification." formControlName="qualification">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
@@ -69,7 +64,7 @@
                     {{fruit.name}}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                   </mat-chip>
-                  <input placeholder="Language."
+                  <input placeholder="Language." formControlName="language"
                          [matChipInputFor]="chipList"
                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                          [matChipInputAddOnBlur]="addOnBlur"
@@ -77,12 +72,7 @@
                 </mat-chip-list>
             </mat-form-field>
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Location.">
+                <input matInput placeholder="Location." formControlName="location">
               </mat-form-field>
-    
-        
-
   </div>
-
-
 </form>
