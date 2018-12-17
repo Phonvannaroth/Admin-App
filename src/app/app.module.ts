@@ -15,8 +15,6 @@ import { MenuComponent } from './component/menu/menu.component';
 import { ContentHeaderComponent } from './component/content-header/content-header.component';
 import { MakePostingComponent } from './page/make-posting/make-posting.component';
 import { CategoryComponent } from './page/category/category.component';
-import { JobRequirementComponent } from './page/job-requirement/job-requirement.component';
-import { JobDescriptionComponent } from './page/job-description/job-description.component';
 import { CompanyInfoComponent } from './page/company-info/company-info.component';
 import { JobReviewComponent } from './page/job-review/job-review.component';
 
@@ -30,7 +28,6 @@ import { APP_STORE } from './store/app.store';
 import { EditCategoryComponent } from './dialog/edit-category/edit-category.component';
 import { DeleteComponent } from './dialog/delete/delete.component';
 import { EditCompanyprofileComponent } from './dialog/edit-companyprofile/edit-companyprofile.component';
-import { JobDetailComponent } from './page/job-detail/job-detail.component';
 
 @NgModule({
   declarations: [
@@ -43,9 +40,6 @@ import { JobDetailComponent } from './page/job-detail/job-detail.component';
     ContentHeaderComponent,
     MakePostingComponent,
     CategoryComponent,
-    JobDetailComponent,
-    JobRequirementComponent,
-    JobDescriptionComponent,
     CompanyInfoComponent,
     JobReviewComponent,
     EditCategoryComponent,

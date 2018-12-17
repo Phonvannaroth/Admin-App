@@ -6,40 +6,58 @@ import { Companykey } from "../interface/company";
 @Injectable()
 export class Company {
   @observable public data;
+  @observable loading = false;
   constructor(private ds: DataserviceService) {}
 
   @action
   fetchData(callback) {
-    this.ds.companyRef().valueChanges().subscribe(docs => {
-      this.data=docs
-      callback(docs)
-    })
+    this.loading = true;
+    this.ds
+      .companyRef()
+      .valueChanges()
+      .subscribe(docs => {
+        this.loading = false;
+        this.data = docs;
+        callback(docs);
+      });
   }
   @action
   addData(item: Companykey, callback) {
+    this.loading = true;
     this.ds
       .companyRef()
       .doc(item.key)
       .set(item)
-      .then(() => callback(true, null))
+      .then(() => {
+        this.loading = false;
+        callback(true, null);
+      })
       .catch(error => callback(false, error));
   }
   @action
   updateData(item: Companykey, callback) {
+    this.loading = true;
     this.ds
       .companyRef()
       .doc(item.key)
       .update(item)
-      .then(() => callback(true, null))
+      .then(() => {
+        this.loading = false;
+        callback(true, null);
+      })
       .catch(error => callback(false, error));
   }
   @action
   deleteData(item: Companykey, callback) {
+    this.loading = true;
     this.ds
       .companyRef()
       .doc(item.key)
       .delete()
-      .then(() => callback(true, null))
+      .then(() => {
+        this.loading = false;
+        callback(true, null);
+      })
       .catch(error => callback(false, error));
   }
 }

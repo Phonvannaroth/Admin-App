@@ -6,15 +6,20 @@ import { Postjobkey } from "../interface/postjob";
 @Injectable()
 export class Postjob {
   @observable public data;
+  @observable loading = false;
   constructor(private db: DataserviceService) {}
 
   @action
   addData(item: Postjobkey, callback) {
+    this.loading = true;
     this.db
       .postjobRef()
       .doc(item.key)
       .set(item)
-      .then(() => callback(true, null))
+      .then(() => {
+        this.loading = false;
+        callback(true, null);
+      })
       .catch(error => callback(false, error));
   }
 }

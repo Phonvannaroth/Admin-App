@@ -24,7 +24,6 @@ export class EditCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    // console.log(this.data)
   }
   onNoClick(){
     this.dialogRef.close();
@@ -46,6 +45,7 @@ export class EditCategoryComponent implements OnInit {
         description:f.description,
       }
       this.category.updateData(item,(success,error)=>{
+        
         if(success){
           this.dialogRef.close();
           this.snackBar.open('Category Edited.', 'done', { duration: 2000 });
