@@ -10,10 +10,10 @@ export class Category {
   constructor(private ds: DataserviceService) { }
 
   @action
-  fetchData(callbakc) {
+  fetchData(callback) {
     this.ds.categoryRef().valueChanges().subscribe(docs => {
-      this.data = docs;
-      callbakc(docs)
+      this.data=docs
+      callback(docs)
     })
   }
   @action

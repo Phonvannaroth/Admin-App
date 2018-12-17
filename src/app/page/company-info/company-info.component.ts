@@ -40,7 +40,7 @@ export class CompanyInfoComponent implements OnInit {
 
   ngOnInit() {
     this.buildform();
-    this.company.fetchData();
+    this.company.fetchData(list=>{});
   }
   buildform(): void {
     this.form = this.fb.group({

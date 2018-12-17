@@ -9,13 +9,11 @@ export class Company {
   constructor(private ds: DataserviceService) {}
 
   @action
-  fetchData() {
-    this.ds
-      .companyRef()
-      .valueChanges()
-      .subscribe(docs => {
-        this.data = docs;
-      });
+  fetchData(callback) {
+    this.ds.companyRef().valueChanges().subscribe(docs => {
+      this.data=docs
+      callback(docs)
+    })
   }
   @action
   addData(item: Companykey, callback) {

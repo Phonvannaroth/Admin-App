@@ -1,0 +1,13 @@
+@Keyframes slideleft {
+    0% {
+        transform: translateX(100vw);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.panelclass {
+    height: 100vh;
+    animation: slideleft 0.5s forwards 0s ease-in;
+}

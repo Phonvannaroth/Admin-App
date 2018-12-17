@@ -16,7 +16,6 @@ export class DeleteComponent implements OnInit {
     private  snackBar:MatSnackBar) { }
 
   ngOnInit() {
-    this.msg = this.data
   }
  _delete(item){
    this.category.deleteData(item,(success,error)=>{

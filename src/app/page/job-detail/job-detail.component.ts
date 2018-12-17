@@ -68,7 +68,7 @@ export class JobDetailComponent implements OnInit {
 
   ngOnInit() {
     this.categoryfilter.fetchData(list=>{});
-    this.companyfilter.fetchData();
+    this.companyfilter.fetchData(list=>{});
     this.buildform();
   }
   buildform(): void{

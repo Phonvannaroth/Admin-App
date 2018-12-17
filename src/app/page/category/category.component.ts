@@ -33,8 +33,9 @@ export class CategoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.category.fetchData(lst=>{});
+    this.category.fetchData(()=>{});
     this.buildForm();
+    console.log(this.category);
   }
   buildForm(): void {
     this.form = this.fb.group({
@@ -66,8 +67,8 @@ export class CategoryComponent implements OnInit {
   _edit(item) {
     const dialogRef = this.dialog.open(EditCategoryComponent, {
       data: item,
-      position:{right:"0"},
-      height:'100vh'
+      position:{right:'0'},
+      panelClass:'panelclass',
     });
   }
   _delete(item) {

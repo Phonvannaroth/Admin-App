@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from "@angular/forms";
 import { MatChipInputEvent, MatAutocompleteSelectedEvent, MatAutocomplete } from "@angular/material";
 import { ENTER, COMMA } from "@angular/cdk/keycodes";
 import { Category } from "src/app/store/category.store";
@@ -33,8 +33,6 @@ export interface Term {
   styleUrls: ["./make-posting.component.scss"]
 })
 export class MakePostingComponent implements OnInit {
-  category:any;
-  language:any;
   isLinear = false;
   SecondGroup: FormGroup;
   ThirdGroup: FormGroup;
@@ -77,17 +75,21 @@ export class MakePostingComponent implements OnInit {
 }
 
   ngOnInit() {
-    console.log(this.fruits);
-    console.log(this.allFruits);
     this.buildform();
     this.categoryfilter.fetchData(list=>{
       if(list.length>0){
         this.FirstGroup.patchValue({
-          jobcategory:list[4]['name']
+          jobcategory:list[0]
         })
       }
     });
-    this.companyfilter.fetchData();
+    this.companyfilter.fetchData(list=>{
+      if(list.length>0){
+        this.FirstGroup.patchValue({
+          company:list[0]
+        })
+      }
+    });
   }
 
   compareFn(user1: any, user2: any) {
@@ -107,7 +109,7 @@ export class MakePostingComponent implements OnInit {
       jobcategory: [null, Validators.required],
       company: [null, Validators.required],
       qualification: [null, Validators.required],
-      language: [null,Validators.required],
+      language: [null],
       location: [null, Validators.required],
     });
     this.SecondGroup = this._formBuilder.group({
@@ -116,16 +118,12 @@ export class MakePostingComponent implements OnInit {
     this.ThirdGroup = this._formBuilder.group({
       description: [null, Validators.required]
     });
-    this.language = this.FirstGroup.controls['language'];
-    this.category = this.FirstGroup.controls['jobcategory'];
-    console.log(this.language);
-    console.log(this.category);
+  }
+
+  _onNext(){
   }
   _save(first: any,second:any,third:any,chipList) {
-    console.log(first);
-    console.log(second);
-    console.log(third);
-    console.log(chipList);
+   
     if (
       this.FirstGroup.valid &&
       this.SecondGroup.valid &&
@@ -135,7 +133,7 @@ export class MakePostingComponent implements OnInit {
       const item: Postjobkey = {
         key: key,
         company_name: first.company,
-        category_name: first.category,
+        category_name: first.jobcategory,
         jobtitle: first.jobtitle,
         exp: first.yearofexp,
         hiring: first.hiring,
@@ -151,6 +149,7 @@ export class MakePostingComponent implements OnInit {
         requirement: second.requirement,
         description: third.description
       };
+      console.log(item)
       this.postjob.addData(item,(success,error)=>{
         if(success){
           alert("success")
@@ -163,31 +162,26 @@ export class MakePostingComponent implements OnInit {
   }
 
   add(event: MatChipInputEvent): void {
-    // Add fruit only when MatAutocomplete is not open
-    // To make sure this does not conflict with OptionSelected Event
     if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
       const value = event.value;
-
-      // Add our fruit
       if ((value || '').trim()) {
         this.fruits.push(value.trim());
+        this.FirstGroup.patchValue({
+          language:this.fruits
+        });
+        console.log(this.FirstGroup.value)
       }
-
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-
-      this.fruitCtrl.setValue(null);
+      
     }
   }
 
   remove(fruit: string): void {
     const index = this.fruits.indexOf(fruit);
-
     if (index >= 0) {
       this.fruits.splice(index, 1);
+      this.FirstGroup.patchValue({
+        language:this.fruits
+      })
     }
   }
 
