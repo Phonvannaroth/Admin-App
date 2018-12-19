@@ -35,7 +35,6 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
     this.category.fetchData(()=>{});
     this.buildForm();
-    console.log(this.category);
   }
   buildForm(): void {
     this.form = this.fb.group({
@@ -56,7 +55,6 @@ export class CategoryComponent implements OnInit {
       };
       this.category.addData(item, (success, error) => {
         if (success) {
-          console.log(success);
           this.snackBar.open("Category Added.", "done", { duration: 2000 });
         } else {
           alert(error);
@@ -73,7 +71,19 @@ export class CategoryComponent implements OnInit {
   }
   _delete(item) {
     const dialogRef = this.dialog.open(DeleteComponent, {
-      data: item
+      data:{name:item.name}
     });
+   dialogRef.afterClosed().subscribe(result=>{
+     if(result==='yes'){
+      this.category.deleteData(item,(success,error)=>{
+        if(success){
+         this.snackBar.open('Category Deleted.', 'done', { duration: 2000 });
+        }
+        else{
+          alert(error);
+        }
+      })
+     }
+   })
   }
 }

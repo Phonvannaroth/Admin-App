@@ -4,5 +4,7 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="dialogRef.close('no')">Cancel</button>
-  <button mat-button cdkFocusInitial (click)="_delete(data)">Ok</button>
+  <button mat-button cdkFocusInitial [disabled]="category.loading" (click)="dialogRef.close('yes')">Ok</button>
 </div>
+<mat-spinner *ngIf="category?.loading"></mat-spinner>
+ 

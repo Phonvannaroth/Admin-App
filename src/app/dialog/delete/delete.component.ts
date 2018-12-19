@@ -17,15 +17,5 @@ export class DeleteComponent implements OnInit {
 
   ngOnInit() {
   }
- _delete(item){
-   this.category.deleteData(item,(success,error)=>{
-     if(success){
-      this.dialogRef.close();
-      this.snackBar.open('Category Deleted.', 'done', { duration: 2000 });
-     }
-     else{
-       alert(error);
-     }
-   })
- }
+
 }

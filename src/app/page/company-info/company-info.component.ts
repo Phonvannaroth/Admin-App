@@ -8,6 +8,8 @@ import {
 import { Company } from "src/app/store/company.store";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Companykey } from "src/app/interface/company";
+import { MatDialog, MatSnackBar } from "@angular/material";
+import { DeleteComponent } from "src/app/dialog/delete/delete.component";
 
 @Component({
   selector: "app-company-info",
@@ -25,6 +27,7 @@ export class CompanyInfoComponent implements OnInit {
   address_1: AbstractControl;
   address_2: AbstractControl;
 
+
   getErrorMessage() {
     return this.email.hasError("required")
       ? "You must enter a value"
@@ -35,7 +38,9 @@ export class CompanyInfoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public company: Company,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -87,6 +92,22 @@ export class CompanyInfoComponent implements OnInit {
       });
     }
   }
-
+_delete(item){
+  const dialogRef = this.dialog.open(DeleteComponent,{
+    data : {name:item.name}
+  })
+  dialogRef.afterClosed().subscribe(result=>{
+    if(result==='yes'){
+     this.company.deleteData(item,(success,error)=>{
+       if(success){
+        this.snackBar.open('Category Deleted.', 'done', { duration: 2000 });
+       }
+       else{
+         alert(error);
+       }
+     })
+    }
+  })
+}
 
 }
