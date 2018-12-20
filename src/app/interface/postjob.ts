@@ -13,7 +13,7 @@ export interface Postjobkey{
     term:string;
     // industry:string;
     qualification:string;
-    language:string[];
+    language:any;
     location?:string[];
     requirement:string;
     description:string;

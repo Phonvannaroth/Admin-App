@@ -28,7 +28,7 @@
         <mat-form-field class="example-haft-width">
           <mat-select placeholder="Sex." formControlName="sex">
             <mat-option *ngFor="let sex of sexes" [value]="sex.value">
-              {{ sex.viewValue }}
+              {{ sex.value }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -65,7 +65,7 @@
         <mat-form-field class="example-full-width">
           <mat-select placeholder="Term." formControlName="term">
             <mat-option *ngFor="let term of terms" [value]="term.value">
-              {{ term.viewValue }}
+              {{ term.value }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -84,7 +84,7 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <mat-select placeholder="Company." formControlName="company">
+          <mat-select [compareWith]="compareFn" placeholder="Company." formControlName="company">
             <mat-option>None</mat-option>
             <mat-option
               *ngFor="let state of companyfilter?.data"
@@ -164,7 +164,9 @@
       </div>
     </form>
     <div>
-      <button mat-stroked-button color="primary" matStepperNex>Next</button>
+      <button mat-stroked-button color="primary" matStepperNext>
+        Next
+      </button>
     </div>
   </mat-step>
   <!--
@@ -231,7 +233,9 @@
       <button
         mat-stroked-button
         color="primary"
-        (click)="_save(FirstGroup.value, SecondGroup.value, ThirdGroup.value,chipList)"
+        (click)="
+          _save(FirstGroup.value, SecondGroup.value, ThirdGroup.value, chipList)
+        "
       >
         Submit
       </button>
